@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Nova+Flat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,600&family=Jost:wght@500&display=swap');
 
 :root {
     background-color: rgb(154, 44, 166);
@@ -8,12 +8,13 @@
     margin: 0;
     padding: 0;
     font-size: 62.5%;
-    font-family: 'Nova Flat', cursive;
+    font-family: 'Chakra Petch', bold;
 }
 h1 {
-    font-size: 5.4rem;
-    color:white;
+    font-size: 7rem;
+    color:rgb(255, 249, 199);
     margin-bottom: 5rem;
+    margin-top: 20rem;
 }
 h2{
     font-size: 4.2rem;
@@ -27,7 +28,7 @@ h2{
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 5rem;
 }
 .flex-column {
     display: flex;
@@ -47,7 +48,7 @@ h2{
     display: none;
 }
 .btn {
-    font-size: 2.4rem;
+    font-size: 3rem;
     padding: 2rem 0;
     width: 30rem;
     text-align: center;
@@ -75,7 +76,11 @@ h2{
  #highscore-btn:hover {
     box-shadow: 0 0.4rem 1.4rem 0 rgba(255,255, 0, 0.5)
  }
- .fa-crown{
+ .fa-star{
     font-size: 2.5rem;
+    margin-left: 1rem;
+ }
+ .fa-moon {
+    font-size: 6rem;
     margin-left: 1rem;
  }
