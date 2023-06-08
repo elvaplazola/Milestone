@@ -1,3 +1,4 @@
+/* Imported Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,600&family=Jost:wght@500&display=swap');
 
 :root {
@@ -22,7 +23,7 @@ h2{
 }
 .container {
     width: 100vw;
-    height:100vw;
+    height:80vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,9 +45,7 @@ h2{
 .text-center {
     text-align: center;
 }
-.hidden {
-    display: none;
-}
+
 .btn {
     font-size: 3rem;
     padding: 2rem 0;
@@ -58,7 +57,7 @@ h2{
     background: linear-gradient(90deg, rgb(250, 254, 6) 0%, rgb(238, 255, 0) 100%);
     border-radius: 4px;
 }
-
+/* Added animation to button when hovering */
 .btn:hover {
     cursor: pointer;
     box-shadow: 0 0.4rem 1.4rem 0 rgb(232, 221, 5);

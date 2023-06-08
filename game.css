@@ -7,30 +7,38 @@ body {
     width: 100%;
     border-radius: 4px;
     background: yellow;
-    font-size: 4rem;
+    font-size: 5rem;
     min-width: 80rem;
 }
 .choice-container:hover {
     cursor: pointer;
-    box-shadow: 0 0.4rem 0 rgb(255, 238, 0);
+    box-shadow: 0 0.4rem 1.4rem 0 rgb(255, 238, 0);
     transform: scale(1.02);
     transform: transform 100ms;
 }
-.choice-prefix {
+.choice-letter {
     padding: 2rem 2.5rem;
     width: 100%;
 }
+.choice-text {
+    padding: 2rem;
+    width: 100%
+}
+
 .correct {
     background: linear-gradient(32deg, rgb(43, 7, 241) 0%, rgb(8, 41, 255) 100%);
+    color:white;
+    font-style: bold;
 }
 .incorrect {
     background: linear-gradient(32deg rgba(230, 29, 29, 1)0%, rgb(224, 11, 11, 1) 100%);
+    font-style: bold;
 }
 #leo{
     display: flex;
     justify-content: space-between;
 }
-.leo-prefix {
+.leo-letter {
     text-align: center;
     font-size: 2rem;
 }
@@ -45,11 +53,12 @@ body {
     border-radius: 50px;
     overflow: hidden;
 }
-#progressBarFull {
+#progressBarTracker{
     height: 100%;
     background: rgb(11,223,36) ;
     width: 0%;
 }
+
 @media screen and (max-width: 768px) {
     .choice-container{
     min-width: 40rem;}

@@ -1,15 +1,18 @@
+// Declare variables
 const question = document.querySelector('#question');
-const choices = (document.querySelectorAll('.choice-text'));
+const choices = Array.from(document.querySelectorAll('#.choice-text'));
 const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
+const score = document.querySelector('#score');
+const progressBarTracker = document.querySelector('#progressBarTracker');
+const SCORE_POINTS = 10
+const MAX_QUESTIONS = 4
 
 let currentQuestion = {}
-let acceptingAnswers = true
+let acceptingAnswer = true
 let score = 0
 let questionCounter = 0
 let availableQuestions = []
-
+// Astrology Questions
 let questions = [
     {
         question:'How many Zodiac signs are there?',
@@ -28,12 +31,12 @@ let questions = [
         answer: Fire, 
     }
     {
-        question:'What element is the sign of Aquarius?',
+        question:'What element is the sign of Cancer?',
         choice1: 'Earth',
         choice2: 'Air',
         choice3: 'Fire',
         choice4: 'Water',
-        answer: Air, 
+        answer: Water, 
     }
     {
         question:'What is the most common Zodiac sign in the US?',
@@ -63,7 +66,7 @@ let questions = [
         question:'What are the only planets to rule over one Zodiac sign?',
         choice1: 'Mercury and Jupiter',
         choice2: 'Venus and Sun',
-        choice3: 'Saturn and Mars,
+        choice3: 'Saturn and Mars',
         choice4: 'Sun and Moon',
         answer: Sun and Moon, 
     }
@@ -84,11 +87,34 @@ let questions = [
         answer: Libra with 32 billionaires under this sign, 
     }
     {
-        question:'What star sign makes up the majority of this class?',
-        choice1: 'Earth',
-        choice2: 'Air',
-        choice3: 'Fire',
-        choice4: 'Water',
-        answer: Fire, 
+        question:'What star sign Bill Gates?',
+        choice1: 'Cancer,',
+        choice2: 'Aries',
+        choice3: 'Pisces',
+        choice4: 'Scorpio',
+        answer: Scorpio, 
     }
 ]
+
+// Declare functions
+// Initialize game
+startGame = () => {
+    questionCounter = 0
+    score = 0
+    availableQuestions = [...questions]
+    getNewQuestion = ()
+}
+// Create function to generate newQuestion/ store data for high score
+getNewQuestion = () => {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        localStorage.setItem('mostRecentScore', score)
+        return window.location.assign('/end.html')
+    }
+    // Display what question we're on
+    questionCounter++
+    progressText.innerText = 'Question ${questionCounter/MAX_QUESTIONS} *  10}%'
+    // Display progress bar advancement
+    progressBarTracker.style.width = '${(questionCounter/MAX_QUESTIONS) * 10} %'
+    
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+}
