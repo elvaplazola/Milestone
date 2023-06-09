@@ -8,104 +8,113 @@ const SCORE_POINTS = 10
 const MAX_QUESTIONS = 4
 
 let currentQuestion = {}
-let acceptingAnswer = true
 let score = 0
 let questionCounter = 0
-let availableQuestions = []
+
 // Astrology Questions
 let questions = [
     {
         question:'How many Zodiac signs are there?',
-        choice1: '15',
-        choice2: '11',
-        choice3: '10',
-        choice4: '12',
-        answer: 12, 
-    }
+        answers: [
+            {text: '15', correct: false}
+            {text: '11', correct: false}
+            {text: '10', correct: false}
+            {text: '12', correct: true}
+        ],
+    },
     {
         question:'What element is the sign of Aries?',
-        choice1: 'Earth',
-        choice2: 'Air',
-        choice3: 'Fire',
-        choice4: 'Water',
-        answer: Fire, 
-    }
+        answers: [
+            {text: 'Earth', correct: false}
+            {text: 'Air', correct: false}
+            {text: 'Fire', correct: true}
+            {text: 'Water', correct: false}
+        ],
+    },
     {
         question:'What element is the sign of Cancer?',
-        choice1: 'Earth',
-        choice2: 'Air',
-        choice3: 'Fire',
-        choice4: 'Water',
-        answer: Water, 
-    }
+        answers: [
+            {text: 'Earth', correct: false}
+            {text: 'Air', correct: false}
+            {text: 'Fire', correct: false}
+            {text: 'Water', correct: true}
+        ],
+    },
     {
         question:'What is the most common Zodiac sign in the US?',
-        choice1: 'Virgo',
-        choice2: 'Libra',
-        choice3: 'Gemini',
-        choice4: 'Scorpio',
-        answer: Scorpio with an estimated 9.6% US population,
-    }
+        answers: [
+            {text: 'Virgo', correct: false}
+            {text: 'Libra', correct: false}
+            {text: 'Gemini', correct: false}
+            {text: 'Scorpio', correct: true}
+        ],
+    },
     {
         question:'What is the least common Zodiac sign in the US?',
-        choice1: 'Sagittarius',
-        choice2: 'Aquarius',
-        choice3: 'Leo',
-        choice4: 'Taurus',
-        answer: Aquarius with an estimated 6.3% US population,
-    }
+        answers: [
+            {text: 'Sagittarius', correct: false}
+            {text: 'Aquarius', correct: true}
+            {text: 'Leo', correct: false}
+            {text: 'Taurus', correct: false}
+        ],
+    },
     {
         question:'How many planets rule the twelve Zodiac signs?',
-        choice1: '9',
-        choice2: '7',
-        choice3: '6',
-        choice4: '10',
-        answer: 9, 
-    }
+        answers: [
+            {text: '9', correct: true}
+            {text: '7', correct: false}
+            {text: '6', correct: false}
+            {text: '10', correct: false}
+        ],
+    },
     {
         question:'What are the only planets to rule over one Zodiac sign?',
-        choice1: 'Mercury and Jupiter',
-        choice2: 'Venus and Sun',
-        choice3: 'Saturn and Mars',
-        choice4: 'Sun and Moon',
-        answer: Sun and Moon, 
-    }
+        answers: [
+            {text: 'Mercury and Jupiter', correct: false}
+            {text: 'Venus and Sun', correct: false}
+            {text: 'Saturn and Mars', correct: false}
+            {text: 'Sun and Moon', correct: true}
+        ],
+    },
     {
         question:'What are the most common star signs among NFL All-Stars?',
-        choice1: 'Libra and Aries',
-        choice2: 'Sagittarius and Virgo',
-        choice3: 'Leo and Aries',
-        choice4: 'Gemini and Cancer',
-        answer: Leo and Aries, 
-    }
+        answers: [
+            {text: 'Libra and Aries', correct: false}
+            {text: 'Sagittarius and Virgo', correct: false}
+            {text: 'Leo and Aries', correct: true}
+            {text: 'Gemini and Cancer', correct: false}
+        ],
+    },
     {
         question:'What is the most common star sign among billionaires?',
-        choice1: 'Virgo',
-        choice2: 'Libra',
-        choice3: 'Taurus',
-        choice4: 'Leo',
-        answer: Libra with 32 billionaires under this sign, 
-    }
+        answers: [
+            {text: 'Virgo', correct: false}
+            {text: 'Libra', correct: true}
+            {text: 'Taurus', correct: false}
+            {text: 'Leo', correct: false}
+        ],
+    },
     {
-        question:'What star sign Bill Gates?',
-        choice1: 'Cancer,',
-        choice2: 'Aries',
-        choice3: 'Pisces',
-        choice4: 'Scorpio',
-        answer: Scorpio, 
-    }
-]
+        question:'What star sign is Bill Gates?',
+        answers: [
+            {text: 'Cancer', correct: false}
+            {text: 'Pisces', correct: false}
+            {text: 'Capricorn', correct: false}
+            {text: 'Scorpio', correct: true}
+        ],
+    },
+];
 
 // Declare functions
 // Initialize game
-startGame = () => {
+function startGame () {
     questionCounter = 0
     score = 0
     availableQuestions = [...questions]
     getNewQuestion = ()
 }
 // Create function to generate newQuestion/ store data for high score
-getNewQuestion = () => {
+function getNewQuestion() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
         return window.location.assign('/end.html')
@@ -116,5 +125,44 @@ getNewQuestion = () => {
     // Display progress bar advancement
     progressBarTracker.style.width = '${(questionCounter/MAX_QUESTIONS) * 10} %'
     
+    // keep track of current question
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    currentQuestion = availableQuestions[questionIndex]
+    question.innerText = currentQuestion.question
+// Stores choice
+    choices.forEach(choice => {
+        const number = choice.dataset ['number']
+        choice.innerText = currentQuestion ['choice' + number]
+    })
+// Replaces question if question is correct
+    availableQuestions.splice (questionsIndex, 1)
+
+    acceptingAnswer = true
+}
+// create iteration to detect wrong answer
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+        if(!acceptingAnswer) return
+        acceptingAnswer = false
+        const selectedChoice = e.target
+        const selectedAnswer = selectedChoice.dataset['number']
+// change colors depending on answer
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' :
+        'incorrect'
+// Add points if correct
+        if(classToApply === 'correct') {
+            IncrementScore(SCORE_POINTS)
+        }
+
+        selectedChoice.parentElement.classList.add(classToApply)
+       
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply)
+            getNewQuestion()
+        }, 1000)
+    })
+})
+IncrementScore = num => {
+    score +=num
+    scoreText.innerText = score
 }

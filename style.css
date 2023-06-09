@@ -22,14 +22,12 @@ h2{
     margin-bottom: 4rem;
 }
 .container {
-    width: 100vw;
-    height:80vw;
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 5rem;
+    padding: 3rem;
 }
 .flex-column {
     display: flex;
