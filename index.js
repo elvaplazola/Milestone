@@ -5,7 +5,7 @@ const progressText = document.querySelector('#progressText');
 const score = document.querySelector('#score');
 const progressBarTracker = document.querySelector('#progressBarTracker');
 const SCORE_POINTS = 10
-const MAX_QUESTIONS = 4
+const MAX_QUESTIONS = 10
 
 let currentQuestion = {}
 let score = 0
