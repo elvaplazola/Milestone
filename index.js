@@ -117,7 +117,7 @@ function startGame () {
 function getNewQuestion() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
-        return window.location.assign('/end.html')
+        return window.location.assign('/end.html')}
     }
     // Display what question we're on
     questionCounter++
@@ -125,27 +125,12 @@ function getNewQuestion() {
     // Display progress bar advancement
     progressBarTracker.style.width = '${(questionCounter/MAX_QUESTIONS) * 10} %'
     
-    // keep track of current question
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionIndex]
-    question.innerText = currentQuestion.question
 // Stores choice
     choices.forEach(choice => {
         const number = choice.dataset ['number']
         choice.innerText = currentQuestion ['choice' + number]
     })
-// Replaces question if question is correct
-    availableQuestions.splice (questionsIndex, 1)
 
-    acceptingAnswer = true
-}
-// create iteration to detect wrong answer
-choices.forEach(choice => {
-    choice.addEventListener('click', e => {
-        if(!acceptingAnswer) return
-        acceptingAnswer = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
 // change colors depending on answer
         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' :
         'incorrect'
@@ -154,14 +139,6 @@ choices.forEach(choice => {
             IncrementScore(SCORE_POINTS)
         }
 
-        selectedChoice.parentElement.classList.add(classToApply)
-       
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
-            getNewQuestion()
-        }, 1000)
-    })
-})
 IncrementScore = num => {
     score +=num
     scoreText.innerText = score
